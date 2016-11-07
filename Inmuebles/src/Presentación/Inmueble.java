@@ -10,9 +10,5 @@ package Presentación;
  * @author user
  */
 public class Inmueble {
-    private int edad;
     
-    public Inmueble(int edad) {
-        this.edad = edad;
-    }
 }
