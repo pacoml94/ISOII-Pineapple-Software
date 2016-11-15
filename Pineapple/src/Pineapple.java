@@ -6,5 +6,7 @@ public class Pineapple {
 		System.out.println("Aclaracion: Empresa de Nacho");
 		System.out.println("");
 	}
-
+	public void metodo(){
+		System.out.println("Este metodo es una mierda");
+	}
 }
