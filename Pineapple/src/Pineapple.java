@@ -7,5 +7,7 @@ public class Pineapple {
 		System.out.println("");
 		String string;
 	}
-
+	public void metodo(){
+		System.out.println("Este metodo es una mierda");
+	}
 }
