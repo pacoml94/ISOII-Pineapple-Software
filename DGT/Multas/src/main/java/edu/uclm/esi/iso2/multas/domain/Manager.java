@@ -37,7 +37,7 @@ public class Manager {
 	 */
 	public int openInquiry(String license, double speed, String location, double maxSpeed) {
 		Inquiry inquiry=new Inquiry(license, speed, location, maxSpeed);
-		GeneralDao<Inquiry> dao=new GeneralDao<>();
+		GeneralDao<Inquiry> dao=new GeneralDao<Inquiry>();
 		dao.insert(inquiry);
 		return inquiry.getId();
 	}
@@ -49,7 +49,7 @@ public class Manager {
 	 * @return 
 	 */
 	public Sanction identifyDriver(int idInquiry, String dni) {
-		GeneralDao<Inquiry> dao=new GeneralDao<>();
+		GeneralDao<Inquiry> dao=new GeneralDao<Inquiry>();
 		Inquiry inquiry=dao.findById(Inquiry.class, idInquiry);
 		Sanction sanction=inquiry.createSanctionFor(dni);
 		return sanction;
@@ -60,7 +60,7 @@ public class Manager {
 	 * @param idSanction The id of the sanction to be paid
 	 */
 	public void pay(int idSanction) {
-		GeneralDao<Sanction> dao=new GeneralDao<>();
+		GeneralDao<Sanction> dao=new GeneralDao<Sanction>();
 		Sanction sanction=dao.findById(Sanction.class, idSanction);
 		sanction.pay();
 		dao.update(sanction);

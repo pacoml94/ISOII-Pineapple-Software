@@ -24,6 +24,5 @@
   </dependencies>
   <modules>
     <module>Multas</module>
-    <module>Radar</module>
   </modules>
 </project>
