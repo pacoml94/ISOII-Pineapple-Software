@@ -1,4 +1,4 @@
-package PINEAPPLE_SOFTWARE.DGT;
+package edu.uclm.esi.iso2.PINEAPPLE_SOFTWARE.DGT;
 
 /**
  * Hello world!

@@ -1,4 +1,4 @@
-package edu.uclm.esi.interfaz;
+package edu.uclm.esi.iso2.interfaz;
 
 import java.awt.EventQueue;
 
