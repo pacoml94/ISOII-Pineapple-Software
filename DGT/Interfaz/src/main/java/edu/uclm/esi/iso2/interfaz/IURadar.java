@@ -33,6 +33,10 @@ public class IURadar {
 		});
 	}
 
+	public JFrame getRadar() {
+		return frmRadar;
+	}
+	
 	/**
 	 * Create the application.
 	 */
@@ -53,6 +57,7 @@ public class IURadar {
 		}
 		panel.setLayout(new GridLayout(2, 1, 0, 0));
 		{
+			btnArrancarRadar.addActionListener(new BtnArrancarRadarActionListener());
 			panel.add(btnArrancarRadar);
 		}
 		{
@@ -64,6 +69,14 @@ public class IURadar {
 	private class BtnDetenerRadarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			frmRadar.dispose();
+		}
+	}
+	private class BtnArrancarRadarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			//Radar r = new Radar(true);
+			frmRadar.dispose();
+			IUSancion iuSancion = new IUSancion();
+			iuSancion.setVisible(true);
 		}
 	}
 }
