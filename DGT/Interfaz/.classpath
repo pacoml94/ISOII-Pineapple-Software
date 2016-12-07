@@ -22,10 +22,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="/Radar">
-		<accessrules>
-			<accessrule kind="accessible" pattern="accesible"/>
-		</accessrules>
-	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/DGT"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
