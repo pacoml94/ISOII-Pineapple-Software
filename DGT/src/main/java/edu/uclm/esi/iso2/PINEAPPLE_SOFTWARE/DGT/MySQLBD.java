@@ -18,13 +18,13 @@ public class MySQLBD {
     public MySQLBD conectar() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String BaseDeDatos = "jdbc:mysql://localhost/seguridad?user=jorge&password=root";
+            String BaseDeDatos = "jdbc:mysql://localhost/multas?user=root";
             setConexion(DriverManager.getConnection(BaseDeDatos));
            
             if (connection != null) {
-                System.out.println("Connection succesfull");
+                System.out.println("Conexión hecha");
             } else {
-                System.out.println("Connection failed");
+                System.out.println("Conexion fallida");
             }
         } catch (Exception e) {
             e.printStackTrace();
