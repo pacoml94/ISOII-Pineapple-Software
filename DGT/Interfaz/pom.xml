@@ -8,9 +8,7 @@
 		<artifactId>DGT</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>PINEAPPLE-SOFTWARE</groupId>
 	<artifactId>Interfaz</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>Interfaz</name>
 	<url>http://maven.apache.org</url>
 	<properties>
@@ -22,6 +20,16 @@
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>PINEAPPLE-SOFTWARE</groupId>
+			<artifactId>Multas</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>PINEAPPLE-SOFTWARE</groupId>
+			<artifactId>Radar</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<build>

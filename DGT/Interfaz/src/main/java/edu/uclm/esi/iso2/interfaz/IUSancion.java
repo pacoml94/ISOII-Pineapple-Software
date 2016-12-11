@@ -7,12 +7,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import edu.uclm.esi.iso2.persistencia.MySQLBD;
+
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -25,6 +30,8 @@ public class IUSancion extends JFrame {
 	private final JTextField txtDNI = new JTextField();
 	private final JButton btnSancionar = new JButton("Sancionar");
 	private int numExp;
+	private MySQLBD bd;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -45,6 +52,10 @@ public class IUSancion extends JFrame {
 	 * Create the frame.
 	 */
 	public IUSancion() {
+		//Prueba momentanea
+		realizarConsulta();
+		////////////////////
+		txtDNI.setEditable(false);
 		txtDNI.addFocusListener(new TxtDNIFocusListener());
 		txtDNI.setBounds(187, 111, 86, 20);
 		txtDNI.setColumns(10);
@@ -76,7 +87,37 @@ public class IUSancion extends JFrame {
 			btnSancionar.setBounds(159, 182, 114, 23);
 			pnlSancion.add(btnSancionar);
 		}
+		
 	}
+
+	private void realizarConsulta() {
+		try {
+			bd = new MySQLBD();
+			bd.conectar();
+			consulta(bd);
+		} catch (SQLException e) {
+			System.err.println("Error al conectar con la base de datos");
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.err.println("Error general");
+			e.printStackTrace();
+		}
+	}
+	
+	private void consulta(MySQLBD bd) throws SQLException{
+    	ResultSet rs;
+    	String sql = "SELECT * FROM hibernate_sequences";
+    	rs = bd.consulta(sql);
+    	
+    	while(rs.next()){
+    		int points = rs.getInt("next_val");
+    		String id = rs.getString("sequence_name");
+    		System.out.println("id: "+id+", puntos: "+points);
+    		String s=rs.getString("sequence_name");
+    	}
+    	rs.close();
+    }
+
 	private class TxtDNIFocusListener extends FocusAdapter {
 		@Override
 		public void focusGained(FocusEvent e) {
