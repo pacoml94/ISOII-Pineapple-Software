@@ -26,14 +26,17 @@ public class App {
     			}
     		} catch (SQLException e) {
     			System.err.println("Error al conectar con la base de datos");
+    			e.printStackTrace();
     			leer.nextLine();
     			repetir = false;
     		} catch (InputMismatchException e) {
     			System.err.println("Error al introducir la consulta");
+    			e.printStackTrace();
     			leer.nextLine();
     			repetir = false;
     		} catch (Exception e) {
     			System.err.println("Error general");
+    			e.printStackTrace();
     			leer.nextLine();
     		}
 		} while (repetir == false);
@@ -45,8 +48,8 @@ public class App {
     	rs = bd.consulta(sql);
     	
     	while(rs.next()){
-    		int points = rs.getInt("points");
-    		int id = rs.getInt("id");
+    		int points = rs.getInt("next_val");
+    		String id = rs.getString("sequence_name");
     		System.out.println("id: "+id+", puntos: "+points);
     		String s=rs.getString("sequence_name");
     	}
