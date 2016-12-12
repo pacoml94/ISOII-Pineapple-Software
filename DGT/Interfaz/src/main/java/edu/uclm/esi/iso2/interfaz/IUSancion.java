@@ -13,6 +13,7 @@ import edu.uclm.esi.iso2.persistencia.MySQLBD;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -34,10 +35,10 @@ public class IUSancion extends JFrame {
 	private final JPanel pnlPago = new JPanel();
 	private final JPanel pnlCambiop = new JPanel();
 	private final JScrollPane scrollPane = new JScrollPane();
-	private final JList lstMatriculas = new JList();
+	private final JList<String> lstMatriculas = new JList<String>();
 	private final JLabel lblIdDelConductor = new JLabel("ID del conductor: ");
 	private final JLabel lblPuntosDelConductor = new JLabel("Puntos del conductor:");
-	
+	private DefaultListModel<String> modeloLista = new DefaultListModel<>();
 	/**
 	 * Launch the application.
 	 */
@@ -59,7 +60,7 @@ public class IUSancion extends JFrame {
 	 */
 	public IUSancion() {
 		//Prueba momentanea
-		realizarConsulta();
+		cargarConductores();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 580, 457);
 		contentPane = new JPanel();
@@ -98,11 +99,11 @@ public class IUSancion extends JFrame {
 		
 	}
 
-	private void realizarConsulta() {
+	private void cargarConductores() {
 		try {
 			bd = new MySQLBD();
 			bd.conectar();
-			consulta(bd);
+			leerBD(bd);
 		} catch (SQLException e) {
 			System.err.println("Error al conectar con la base de datos");
 			e.printStackTrace();
@@ -112,17 +113,15 @@ public class IUSancion extends JFrame {
 		}
 	}
 	
-	private void consulta(MySQLBD bd) throws SQLException{
+	private void leerBD(MySQLBD bd) throws SQLException{
     	ResultSet rs;
     	String sql = "SELECT * FROM hibernate_sequences";
     	rs = bd.consulta(sql);
     	
     	while(rs.next()){
-    		int points = rs.getInt("next_val");
-    		String id = rs.getString("sequence_name");
-    		System.out.println("id: "+id+", puntos: "+points);
-    		String s=rs.getString("sequence_name");
+    		modeloLista.addElement(rs.getString("sequence_name"));
     	}
+    	lstMatriculas.setModel(modeloLista);
     	rs.close();
     }
 }
