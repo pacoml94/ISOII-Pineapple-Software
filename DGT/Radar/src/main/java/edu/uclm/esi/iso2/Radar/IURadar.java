@@ -3,7 +3,9 @@ package edu.uclm.esi.iso2.Radar;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.CloseAction;
 
 import edu.uclm.esi.iso2.interfaz.IUSancion;
 import edu.uclm.esi.iso2.persistencia.MySQLBD;
@@ -79,46 +81,14 @@ public class IURadar {
 
 	private class BtnDetenerRadarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			frmRadar.dispose();
+			JOptionPane.showMessageDialog(frmRadar, "Radar desconectado", "Radar", JOptionPane.CLOSED_OPTION);
+			System.exit(0);
 		}
 	}
 	private class BtnArrancarRadarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			//Radar r = new Radar(true);
-			//Conexión con la base de datos
-			//realizarConsulta();
-			////////////////////////////////////////////////////////
-			frmRadar.dispose();
 			IUSancion iuSancion = new IUSancion();
 			iuSancion.setVisible(true);
 		}
-		
-/*		private void realizarConsulta() {
-			try {
-				MySQLBD bd = new MySQLBD();
-				bd.conectar();
-				consulta(bd);
-			} catch (SQLException e) {
-				System.err.println("Error al conectar con la base de datos");
-				e.printStackTrace();
-			} catch (Exception e) {
-				System.err.println("Error general");
-				e.printStackTrace();
-			}
-		}
-		
-		private void consulta(MySQLBD bd) throws SQLException{
-	    	ResultSet rs;
-	    	String sql = "SELECT * FROM hibernate_sequences";
-	    	rs = bd.consulta(sql);
-	    	
-	    	while(rs.next()){
-	    		int points = rs.getInt("next_val");
-	    		String id = rs.getString("sequence_name");
-	    		System.out.println("id: "+id+", puntos: "+points);
-	    		String s=rs.getString("sequence_name");
-	    	}
-	    	rs.close();
-	    }*/
 	}
 }
