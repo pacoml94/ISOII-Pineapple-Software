@@ -1,10 +1,11 @@
-package edu.uclm.esi.iso2.interfaz;
+package edu.uclm.esi.iso2.Radar;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import edu.uclm.esi.iso2.interfaz.IUSancion;
 import edu.uclm.esi.iso2.persistencia.MySQLBD;
 
 import java.awt.BorderLayout;
@@ -86,7 +87,7 @@ public class IURadar {
 			//Radar r = new Radar(true);
 			//Conexión con la base de datos
 			//realizarConsulta();
-			/////////////////////////////////////////////////////////////////
+			////////////////////////////////////////////////////////
 			frmRadar.dispose();
 			IUSancion iuSancion = new IUSancion();
 			iuSancion.setVisible(true);
