@@ -83,6 +83,7 @@ public class IURadar {
 		public void actionPerformed(ActionEvent arg0) {
 			JOptionPane.showMessageDialog(frmRadar, "Radar desconectado", "Radar", JOptionPane.CLOSED_OPTION);
 			System.exit(0);
+			//
 		}
 	}
 	private class BtnArrancarRadarActionListener implements ActionListener {
