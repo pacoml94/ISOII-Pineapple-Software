@@ -100,7 +100,7 @@ public class IUSancion extends JFrame {
 			scrollPane.setViewportView(lstConductores);
 		}
 		{
-			lblIdDelConductor.setBounds(298, 128, 93, 14);
+			lblIdDelConductor.setBounds(298, 128, 146, 14);
 			pnlSanciones.add(lblIdDelConductor);
 		}
 		{
