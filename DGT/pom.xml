@@ -25,5 +25,6 @@
   <modules>
   	<module>Multas</module>
   	<module>Interfaz</module>
+  	<module>Radar</module>
   </modules>
 </project>
