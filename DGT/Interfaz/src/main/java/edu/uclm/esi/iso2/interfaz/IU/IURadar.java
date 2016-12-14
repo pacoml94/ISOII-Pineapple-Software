@@ -89,8 +89,7 @@ public class IURadar {
 	}
 	private class BtnArrancarRadarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			TestManager tm = new TestManager();
-			tm.test();
+		
 		}
 	}
 }

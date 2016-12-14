@@ -2,11 +2,10 @@ package edu.uclm.esi.iso2.multas.dao;
 
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
-import org.apache.commons.logging.*;
 
 public class HibernateFactory {
     private static SessionFactory sessionFactory;
-    private static Log log = LogFactory.getLog(HibernateFactory.class);
+    //private static Log log = LogFactory.getLog(HibernateFactory.class);
 
     /**
      * Constructs a new Singleton SessionFactory
@@ -48,7 +47,7 @@ public class HibernateFactory {
             try {
                 sessionFactory.close();
             } catch (HibernateException ignored) {
-                log.error("Couldn't close SessionFactory", ignored);
+                System.out.println("Couldn't close SessionFactory"+ ignored);
             }
         }
     }
@@ -58,7 +57,7 @@ public class HibernateFactory {
             try {
                 session.close();
             } catch (HibernateException ignored) {
-                log.error("Couldn't close Session", ignored);
+                System.out.println("Couldn't close Session"+ignored);
             }
         }
     }
@@ -69,7 +68,7 @@ public class HibernateFactory {
                 tx.rollback();
             }
         } catch (HibernateException ignored) {
-            log.error("Couldn't rollback Transaction", ignored);
+            System.out.println("Couldn't rollback Transaction"+ ignored);
         }
     }
     /**
