@@ -22,15 +22,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/eclipse/java-neon/eclipse/mysql-connector-java-5.1.40/mysql-connector-java-5.1.40-bin.jar"/>
-	<classpathentry kind="lib" path="E:/Iso/hibernate-release-5.2.5.Final/lib/required/antlr-2.7.7.jar"/>
-	<classpathentry kind="lib" path="E:/Iso/hibernate-release-5.2.5.Final/lib/required/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="E:/Iso/hibernate-release-5.2.5.Final/lib/required/hibernate-commons-annotations-5.0.1.Final.jar"/>
-	<classpathentry kind="lib" path="E:/Iso/hibernate-release-5.2.5.Final/lib/required/hibernate-core-5.2.5.Final.jar"/>
-	<classpathentry kind="lib" path="E:/Iso/hibernate-release-5.2.5.Final/lib/required/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
-	<classpathentry kind="lib" path="E:/Iso/hibernate-release-5.2.5.Final/lib/required/javassist-3.20.0-GA.jar"/>
-	<classpathentry kind="lib" path="E:/Iso/hibernate-release-5.2.5.Final/lib/required/jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar"/>
-	<classpathentry kind="lib" path="E:/Iso/hibernate-release-5.2.5.Final/lib/required/jboss-logging-3.3.0.Final.jar"/>
-	<classpathentry kind="lib" path="log4j-core-2.0-beta3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/Desktop/mysql-connector-java-5.1.40-bin.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
