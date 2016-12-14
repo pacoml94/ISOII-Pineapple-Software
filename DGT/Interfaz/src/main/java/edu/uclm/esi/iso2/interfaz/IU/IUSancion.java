@@ -8,10 +8,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import edu.uclm.esi.iso2.multas.domain.Manager;
+import edu.uclm.esi.iso2.multas.domain.Sanction;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class IUSancion extends JFrame {
 
@@ -25,12 +29,11 @@ public class IUSancion extends JFrame {
 	private int velocidadConductor, velocidad_max, idVehiculo, indiceCiudad;
 	String [] ciudad = {"Madrid", "Barcelona", "Bilbao", "A Coruña", "Ciudad Real"};
 	String ciudadSancion;
-	private final JLabel lblFecha = new JLabel("Fecha:");
-	private final JTextField txtFecha = new JTextField();
 	private final JLabel lblVelocidadDelConductor = new JLabel("Velocidad del conductor:");
 	private final JLabel lblVelocidadPermitida = new JLabel("Velocidad permitida:");
 	private final JTextField txtVelocidadC = new JTextField();
 	private final JTextField txtVelocidadP = new JTextField();
+	private final JButton btnSancionar = new JButton("Sancionar");
 	
 	/**
 	 * Launch the application.
@@ -56,10 +59,6 @@ public class IUSancion extends JFrame {
 		txtVelocidadP.setColumns(10);
 		txtVelocidadC.setBounds(419, 99, 86, 20);
 		txtVelocidadC.setColumns(10);
-		txtFecha.setBackground(Color.WHITE);
-		txtFecha.setEditable(false);
-		txtFecha.setBounds(124, 255, 131, 20);
-		txtFecha.setColumns(10);
 		/**invocación del método para que los componentes estén inicializados*/
 		abrirSancion();
 		/***************************************************/
@@ -96,13 +95,6 @@ public class IUSancion extends JFrame {
 			panel.add(txtID);
 		}
 		{
-			lblFecha.setBounds(10, 258, 46, 14);
-			panel.add(lblFecha);
-		}
-		{
-			panel.add(txtFecha);
-		}
-		{
 			lblVelocidadDelConductor.setBounds(265, 102, 155, 14);
 			panel.add(lblVelocidadDelConductor);
 		}
@@ -115,6 +107,11 @@ public class IUSancion extends JFrame {
 		}
 		{
 			panel.add(txtVelocidadP);
+		}
+		{
+			btnSancionar.addActionListener(new BtnSancionarActionListener());
+			btnSancionar.setBounds(195, 274, 89, 23);
+			panel.add(btnSancionar);
 		}
 	}
 	
@@ -138,5 +135,15 @@ public class IUSancion extends JFrame {
 		System.out.println("V max "+velocidad_max);
 		System.out.println("Matricula "+idVehiculo);
 		System.out.println("Ciudad "+ciudadSancion);
+	}
+	private class BtnSancionarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			int idConductor = (int) (Math.random()*999+1);
+			String conductor = String.valueOf("0"+idConductor);
+			int idExpediente=manager.openInquiry(conductor, velocidad_max, ciudadSancion, velocidadConductor);
+			Sanction multa=manager.identifyDriver(idExpediente, conductor);
+			multa.pay();
+			manager.pay(multa.getId());
+		}
 	}
 }
