@@ -22,7 +22,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/Multas"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Radar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Multas"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

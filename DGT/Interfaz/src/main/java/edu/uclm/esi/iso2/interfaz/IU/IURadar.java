@@ -7,10 +7,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.CloseAction;
 
-import edu.uclm.esi.iso2.multas.dao.DriverDao;
-import edu.uclm.esi.iso2.multas.domain.*;
-import edu.uclm.esi.iso2.multas.tests.TestManager;
-
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.List;
@@ -89,7 +85,7 @@ public class IURadar {
 	}
 	private class BtnArrancarRadarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-		
+			
 		}
 	}
 }
