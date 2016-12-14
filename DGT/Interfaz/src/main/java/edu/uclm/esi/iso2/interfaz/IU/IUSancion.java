@@ -138,8 +138,17 @@ public class IUSancion extends JFrame {
 	}
 	private class BtnSancionarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			int idConductor = (int) (Math.random()*999+1);
-			String conductor = String.valueOf("0"+idConductor);
+			int idConductor = (int) (Math.random()*9999+1);
+			String conductor = null;
+			
+			if (idConductor<1000) {
+				conductor = String.valueOf("0"+idConductor);
+			} else if (idConductor<100) {
+				conductor = String.valueOf("00"+idConductor);
+			} else {
+				conductor = String.valueOf(idConductor);
+			}
+			
 			int idExpediente=manager.openInquiry(conductor, velocidad_max, ciudadSancion, velocidadConductor);
 			Sanction multa=manager.identifyDriver(idExpediente, conductor);
 			multa.pay();
