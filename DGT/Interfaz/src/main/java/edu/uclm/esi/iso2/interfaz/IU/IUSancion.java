@@ -26,7 +26,11 @@ public class IUSancion extends JFrame {
 	String [] ciudad = {"Madrid", "Barcelona", "Bilbao", "A Coruña", "Ciudad Real"};
 	String ciudadSancion;
 	private final JLabel lblFecha = new JLabel("Fecha:");
-	private final JTextField textField = new JTextField();
+	private final JTextField txtFecha = new JTextField();
+	private final JLabel lblVelocidadDelConductor = new JLabel("Velocidad del conductor:");
+	private final JLabel lblVelocidadPermitida = new JLabel("Velocidad permitida:");
+	private final JTextField txtVelocidadC = new JTextField();
+	private final JTextField txtVelocidadP = new JTextField();
 	
 	/**
 	 * Launch the application.
@@ -48,10 +52,14 @@ public class IUSancion extends JFrame {
 	 * Create the frame.
 	 */
 	public IUSancion() {
-		textField.setBackground(Color.WHITE);
-		textField.setEditable(false);
-		textField.setBounds(124, 255, 131, 20);
-		textField.setColumns(10);
+		txtVelocidadP.setBounds(396, 184, 86, 20);
+		txtVelocidadP.setColumns(10);
+		txtVelocidadC.setBounds(419, 99, 86, 20);
+		txtVelocidadC.setColumns(10);
+		txtFecha.setBackground(Color.WHITE);
+		txtFecha.setEditable(false);
+		txtFecha.setBounds(124, 255, 131, 20);
+		txtFecha.setColumns(10);
 		/**invocación del método para que los componentes estén inicializados*/
 		abrirSancion();
 		/***************************************************/
@@ -92,7 +100,21 @@ public class IUSancion extends JFrame {
 			panel.add(lblFecha);
 		}
 		{
-			panel.add(textField);
+			panel.add(txtFecha);
+		}
+		{
+			lblVelocidadDelConductor.setBounds(265, 102, 155, 14);
+			panel.add(lblVelocidadDelConductor);
+		}
+		{
+			lblVelocidadPermitida.setBounds(265, 187, 122, 14);
+			panel.add(lblVelocidadPermitida);
+		}
+		{
+			panel.add(txtVelocidadC);
+		}
+		{
+			panel.add(txtVelocidadP);
 		}
 	}
 	
@@ -106,6 +128,11 @@ public class IUSancion extends JFrame {
 		//Rango ciudades
 		indiceCiudad = (int) (Math.random()*(ciudad.length-1));
 		ciudadSancion = ciudad[indiceCiudad];
+		
+		txtID.setText(String.valueOf(idVehiculo));
+		txtZona.setText(ciudadSancion);
+		txtVelocidadC.setText(String.valueOf(velocidadConductor));
+		txtVelocidadP.setText(String.valueOf(velocidad_max));
 		
 		System.out.println("V conductor"+velocidadConductor);
 		System.out.println("V max "+velocidad_max);
