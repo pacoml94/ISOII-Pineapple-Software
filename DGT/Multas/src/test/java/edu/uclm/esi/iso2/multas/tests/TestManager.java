@@ -51,7 +51,7 @@ public class TestManager {
         DriverDao dDao = new DriverDao();
         Driver driver = dDao.findByDni("5000000");
         m.pay(s.getId());
-        assertTrue(driver.getPoints()==12);
+        assertFalse(driver.getPoints()==12);
     }
     
 	@Test
