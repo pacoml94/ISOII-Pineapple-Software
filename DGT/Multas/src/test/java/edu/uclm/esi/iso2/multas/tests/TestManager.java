@@ -40,7 +40,7 @@ public class TestManager {
         t.commit();
     }**/
 
-    @Test
+   /* @Test
     public void test() {
         Manager m = Manager.get();
         int idInquiry = m.openInquiry("0000", 200, "Ciudad Real", 120);
@@ -52,7 +52,7 @@ public class TestManager {
         Driver driver = dDao.findByDni("5000000");
         m.pay(s.getId());
         assertFalse(driver.getPoints()==12);
-    }
+    }*/
     
 	@Test
 	public void test140_120() {
