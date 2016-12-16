@@ -230,14 +230,13 @@ public class IUSancionar extends JFrame {
 					}
 				}catch(Exception ex){
 					JOptionPane.showMessageDialog(contentPane, "Este DNI no está multado", "Radar", JOptionPane.ERROR_MESSAGE);
-					txtDni_2.setText("");
+					txtDni_2.setText(" ");
 				}
 				
 			}else{
 				JOptionPane.showMessageDialog(contentPane, "Dni incorrecto", "Radar", JOptionPane.ERROR_MESSAGE);
 				txtDni_2.setText("");
 			}
-			
 		}
 	}
 	private class List_1ListSelectionListener implements ListSelectionListener {
