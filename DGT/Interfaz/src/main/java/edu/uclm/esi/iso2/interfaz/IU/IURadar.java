@@ -84,6 +84,7 @@ public class IURadar {
 		public void actionPerformed(ActionEvent arg0) {
 			/*IUSancion sancion = new IUSancion();
 			sancion.setVisible(true);*/
+			radar.setFuncionando(true);
 			int cont = 1;
 			while(radar.isFuncionando()){
 				System.out.println("Radar funcionando. Multas: "+cont);
