@@ -1,9 +1,11 @@
 package edu.uclm.esi.iso2.multas.domain;
 
+//import antlr.collections.List;
 import edu.uclm.esi.iso2.multas.dao.DriverDao;
 import edu.uclm.esi.iso2.multas.dao.GeneralDao;
 import edu.uclm.esi.iso2.multas.dao.OwnerDao;
 import edu.uclm.esi.iso2.multas.dao.VehicleDao;
+import java.util.*;
 
 /**
  * This class is the access point to the business logic.
@@ -40,6 +42,13 @@ public class Manager {
 		GeneralDao<Inquiry> dao=new GeneralDao<>();
 		dao.insert(inquiry);
 		return inquiry.getId();
+	}
+	
+	public List<Inquiry> obtenerInquiry() {
+		GeneralDao<Inquiry> dao = new GeneralDao<>();
+		List<Inquiry> list = dao.findAll(Inquiry.class);
+		
+		return list;
 	}
 	
 	/**

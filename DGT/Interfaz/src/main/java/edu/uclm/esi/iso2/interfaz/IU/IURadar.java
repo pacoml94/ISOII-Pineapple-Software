@@ -82,8 +82,8 @@ public class IURadar {
 	
 	private class BtnArrancarRadarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			/*IUSancion sancion = new IUSancion();
-			sancion.setVisible(true);*/
+			IUSancionar sancion = new IUSancionar();
+			sancion.setVisible(true);
 			radar.setFuncionando(true);
 			int cont = 1;
 			while(radar.isFuncionando()){
