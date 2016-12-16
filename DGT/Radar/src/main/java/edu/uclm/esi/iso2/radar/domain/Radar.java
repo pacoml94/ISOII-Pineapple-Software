@@ -25,7 +25,7 @@ public class Radar {
 		//Rango ciudades
 		ciudadExp = ciudad[(int) (Math.random()*(ciudad.length-1))];
 		System.out.println(licencia+" "+velocidad+" "+velocidad_max+" "+ciudadExp);
-		System.out.println("paco mariquita y ya esta");
+		System.out.println("paco mariquita y ya e <   sta");
 		
 		int idExpediente=manager.openInquiry(licencia, velocidad, ciudadExp, velocidad_max);
 	}
