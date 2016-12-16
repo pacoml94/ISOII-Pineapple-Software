@@ -35,7 +35,7 @@ import javax.swing.event.ListSelectionEvent;
 public class IUSancionar extends JFrame {
 
 	private JPanel contentPane;
-	private final JButton btnListarSanciones = new JButton("Listar sanciones");
+	private final JButton btnListarSanciones = new JButton("Listar expedientes");
 	private final JButton btnSancionar = new JButton("Sancionar");
 	private Manager manager = Manager.get();
 	JList lstExpediente = new JList();
@@ -105,11 +105,11 @@ public class IUSancionar extends JFrame {
 		scrollPane.setViewportView(lstExpediente);
 		{
 			btnListarSanciones.addActionListener(new BtnListarSancionesActionListener());
-			btnListarSanciones.setBounds(222, 285, 134, 23);
+			btnListarSanciones.setBounds(181, 285, 175, 23);
 			pnl_sancionar.add(btnListarSanciones);
 		}
 		{
-			btnSancionar.setBounds(379, 285, 89, 23);
+			btnSancionar.setBounds(379, 285, 113, 23);
 			pnl_sancionar.add(btnSancionar);
 		}
 		

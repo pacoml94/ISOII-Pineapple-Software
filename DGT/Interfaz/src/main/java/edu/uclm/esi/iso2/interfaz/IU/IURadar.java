@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.CloseAction;
 
 import edu.uclm.esi.iso2.multas.domain.Manager;
-import edu.uclm.esi.iso2.radar.domain.Radar;
+import edu.uclm.esi.iso2.radar.domain.*;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -24,11 +24,11 @@ import java.util.Scanner;
 import java.awt.event.ActionEvent;
 
 public class IURadar {
-
 	private JFrame frmRadar;
 	private final JPanel panel = new JPanel();
 	private final JButton btnArrancarRadar = new JButton("Arrancar radar");
 	private final JButton btnDetenerRadar = new JButton("Detener radar");
+	Hilo hilo = new Hilo();
 	Radar radar = new Radar();
 	/**
 	 * Launch the application.
@@ -82,20 +82,9 @@ public class IURadar {
 	
 	private class BtnArrancarRadarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			IUSancionar sancion = new IUSancionar();
-			sancion.setVisible(true);
-			radar.setFuncionando(true);
-			int cont = 1;
-			while(radar.isFuncionando()){
-				System.out.println("Radar funcionando. Multas: "+cont);
-				radar.crearExpediente();
-				try{
-					Thread.sleep(2000);
-				}catch(InterruptedException ex){
-					Thread.currentThread().interrupt();
-				}
-				cont++;
-			}
+		
+			
+			hilo.start();
 		}
 	}
 	private class BtnDetenerRadarActionListener implements ActionListener {
@@ -103,8 +92,10 @@ public class IURadar {
 			/*JOptionPane.showMessageDialog(frmRadar, "Radar desconectado", "Radar", JOptionPane.CLOSED_OPTION);
 			System.exit(0);*/
 			
-			radar.setFuncionando(false);
-			
+			hilo.detener();
+			System.out.println("Radar detenido");
+			IUSancionar ius = new IUSancionar();
+			ius.setVisible(true);
 		}
 	}
 }
