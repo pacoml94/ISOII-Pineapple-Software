@@ -26,7 +26,6 @@ public class Radar {
 		ciudadExp = ciudad[(int) (Math.random()*(ciudad.length-1))];
 		System.out.println(licencia+" "+velocidad+" "+velocidad_max+" "+ciudadExp);
 		System.out.println("paco mariquita y ya esta");
-		System.out.println("otra vez lo mismo");
 		
 		int idExpediente=manager.openInquiry(licencia, velocidad, ciudadExp, velocidad_max);
 	}
