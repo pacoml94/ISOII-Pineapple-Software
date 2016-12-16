@@ -83,8 +83,6 @@ public class IURadar extends JFrame{
 	
 	private class BtnArrancarRadarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			/*IUSancion sancion = new IUSancion();
-			sancion.setVisible(true);*/
 			hilo.start();
 			IUSancionar iu=new IUSancionar();
 			iu.setVisible(true);
