@@ -23,7 +23,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
 
-public class IURadar {
+public class IURadar extends JFrame{
 
 	private JFrame frmRadar;
 	private final JPanel panel = new JPanel();
@@ -86,17 +86,14 @@ public class IURadar {
 			/*IUSancion sancion = new IUSancion();
 			sancion.setVisible(true);*/
 			hilo.start();
+			IUSancionar iu=new IUSancionar();
+			iu.setVisible(true);
 		}
 	}
 	private class BtnDetenerRadarActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			/*JOptionPane.showMessageDialog(frmRadar, "Radar desconectado", "Radar", JOptionPane.CLOSED_OPTION);
-			System.exit(0);*/
-			
 			hilo.detener();
-			System.out.println("Radar detenido");
-			/*IUSancionar ius = new IUSancionar();
-			ius.setVisible(true);*/
+			
 		}
 	}
 }

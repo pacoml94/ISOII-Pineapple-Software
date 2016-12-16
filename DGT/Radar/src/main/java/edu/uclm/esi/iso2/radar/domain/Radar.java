@@ -25,11 +25,11 @@ public class Radar {
 		ciudadExp = ciudad[(int) (Math.random()*(ciudad.length-1))];
 		System.out.println(licencia+" "+velocidad+" "+velocidad_max+" "+ciudadExp+" nop");
 		
-		//int idExpediente=manager.openInquiry(licencia, velocidad, ciudadExp, velocidad_max);
+		int idExpediente=manager.openInquiry(licencia, velocidad, ciudadExp, velocidad_max);
 	}
 	
 	public String calcularLicencia(){
-		//String num = Integer.toString((int) (Math.random()*(3217-1+1)+1));
+		
 		String l = null;
 		int azar = (int) (Math.random()*(3217-1+1)+1);
 		

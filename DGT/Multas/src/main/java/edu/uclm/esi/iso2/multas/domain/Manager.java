@@ -1,5 +1,7 @@
 package edu.uclm.esi.iso2.multas.domain;
 
+import java.util.List;
+
 import edu.uclm.esi.iso2.multas.dao.DriverDao;
 import edu.uclm.esi.iso2.multas.dao.GeneralDao;
 import edu.uclm.esi.iso2.multas.dao.OwnerDao;
@@ -41,7 +43,25 @@ public class Manager {
 		dao.insert(inquiry);
 		return inquiry.getId();
 	}
-	
+	//obtener la lista de expedientes completa
+	public List<Inquiry> obtenerInquiry(){
+		GeneralDao<Inquiry> dao=new GeneralDao<>();
+		List<Inquiry> inquiry=dao.findAll(Inquiry.class);
+		return inquiry;
+	}
+	//obtener la lista de sanciones completa
+	public List<Sanction> obtenerSanction(){
+		GeneralDao<Sanction> dao=new GeneralDao<>();
+		List<Sanction> sanction=dao.findAll(Sanction.class);
+		return sanction;
+	}
+	//Obtener id del conductor mediante su dni
+	public int obtenerId(String dni){
+		DriverDao dao=new DriverDao();
+		Driver driver=dao.findByDni(dni);
+		int id = driver.getId();
+		return id;
+	}
 	/**
 	 * Executed from the user interface when the vehicle's owner identifies the driver
 	 * @param idInquiry id of the {@link Inquiry}
@@ -55,6 +75,7 @@ public class Manager {
 		return sanction;
 	}
 	
+	
 	/***
 	 * Executed from the user interface when a sanction is paid
 	 * @param idSanction The id of the sanction to be paid
@@ -64,6 +85,11 @@ public class Manager {
 		Sanction sanction=dao.findById(Sanction.class, idSanction);
 		sanction.pay();
 		dao.update(sanction);
+	}
+	public void pay(Sanction multa){
+		GeneralDao<Sanction> dao=new GeneralDao<>();
+		multa.pay();
+		dao.update(multa);
 	}
 	
 	/**
@@ -79,4 +105,6 @@ public class Manager {
 		vehicle.setOwner(owner);
 		daoVehicle.update(vehicle);
 	}
+	
+	
 }
