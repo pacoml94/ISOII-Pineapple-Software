@@ -11,7 +11,6 @@ public class Hilo extends Thread{
 	public void run(){
 		int cont = 1;
 		while(funcionando){
-			//System.out.println("Radar funcionando. Multas: "+cont);
 			radar.crearExpediente();
 			try{
 				Thread.sleep(2000);
