@@ -4,7 +4,6 @@ import edu.uclm.esi.iso2.multas.domain.Manager;
 import edu.uclm.esi.iso2.multas.domain.Sanction;
 
 public class Radar {
-	private boolean funcionando;
 	private Manager manager = Manager.get();
 	private int velocidad, velocidad_max;
 	private String ciudadExp, licencia;
@@ -26,7 +25,7 @@ public class Radar {
 		ciudadExp = ciudad[(int) (Math.random()*(ciudad.length-1))];
 		System.out.println(licencia+" "+velocidad+" "+velocidad_max+" "+ciudadExp);
 		
-		int idExpediente=manager.openInquiry(licencia, velocidad, ciudadExp, velocidad_max);
+		//int idExpediente=manager.openInquiry(licencia, velocidad, ciudadExp, velocidad_max);
 	}
 	
 	public String calcularLicencia(){
@@ -46,12 +45,4 @@ public class Radar {
 		return l;
 	}
 
-	public boolean isFuncionando() {
-		return funcionando;
-	}
-
-	public void setFuncionando(boolean funcionando) {
-		this.funcionando = funcionando;
-	}
-	
 }
