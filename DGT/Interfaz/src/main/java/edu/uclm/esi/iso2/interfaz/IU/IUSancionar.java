@@ -29,8 +29,10 @@ import java.util.*;
 import edu.uclm.esi.iso2.multas.dao.GeneralDao;
 import edu.uclm.esi.iso2.multas.domain.Inquiry;
 import edu.uclm.esi.iso2.multas.domain.Manager;
+import edu.uclm.esi.iso2.multas.domain.Sanction;
 
 import javax.swing.event.ListSelectionEvent;
+import javax.swing.JTextField;
 
 public class IUSancionar extends JFrame {
 
@@ -40,6 +42,8 @@ public class IUSancionar extends JFrame {
 	private Manager manager = Manager.get();
 	JList lstExpediente = new JList();
 	DefaultListModel model = new DefaultListModel<>();
+	private JTextField txtDNI;
+	private int idSancion;
 	/**
 	 * Launch the application.
 	 */
@@ -109,9 +113,19 @@ public class IUSancionar extends JFrame {
 			pnl_sancionar.add(btnListarSanciones);
 		}
 		{
+			btnSancionar.addActionListener(new BtnSancionarActionListener());
 			btnSancionar.setBounds(379, 285, 113, 23);
 			pnl_sancionar.add(btnSancionar);
 		}
+		
+		JLabel lblDniDelConductor = new JLabel("DNI del conductor:");
+		lblDniDelConductor.setBounds(244, 111, 107, 14);
+		pnl_sancionar.add(lblDniDelConductor);
+		
+		txtDNI = new JTextField();
+		txtDNI.setBounds(379, 108, 86, 20);
+		pnl_sancionar.add(txtDNI);
+		txtDNI.setColumns(10);
 		
 		JPanel pnl_pagarSancion = new JPanel();
 		tabbedPane.addTab("Pagar Sancion", null, pnl_pagarSancion, null);
@@ -135,7 +149,13 @@ public class IUSancionar extends JFrame {
 	}
 	private class LstExpedienteListSelectionListener implements ListSelectionListener {
 		public void valueChanged(ListSelectionEvent arg0) {
-			
+			idSancion = Integer.parseInt(lstExpediente.getSelectedValue().toString());
+		}
+	}
+	private class BtnSancionarActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			Sanction multa = manager.identifyDriver(idSancion, txtDNI.getText());
+			System.out.println(multa.getId()+" "+multa.getAmount()+" "+multa.getPoints()+" "+multa.getDateOfPayment()+" "+multa.getDateOfReception());
 		}
 	}
 }
