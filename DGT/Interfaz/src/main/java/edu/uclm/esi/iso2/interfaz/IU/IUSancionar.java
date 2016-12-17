@@ -43,7 +43,7 @@ public class IUSancionar extends JFrame {
 	private Manager manager = Manager.get();
 	private JList lstExpediente = new JList();
 	private JList lstSanciones = new JList();
-	private List<Sanction> sancionesConductor=new ArrayList<>();
+	private List<Sanction> sancionesConductor;
 	DefaultListModel model = new DefaultListModel<>();
 	DefaultListModel model_2 = new DefaultListModel<>();
 	private JTextField txtDni;
@@ -214,25 +214,29 @@ public class IUSancionar extends JFrame {
 	}
 	private class ButtonActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
+			sancionesConductor=new ArrayList<>();
 			model_2.clear();
+			int id=0;
+			int cont=0;
 			List<Sanction> sanciones=m.obtenerSanction();
 			String dni = txtDni_2.getText();
+			txtDni_2.setText("");
 			if(dni.matches("[0-9]*") && dni.length()==7){
-				try{
-					int id=m.obtenerId(dni);
-					for(int i=0;i<sanciones.size();i++){
-						if(sanciones.get(i).getSanctionHolder().getDni().equals(dni))
-							sancionesConductor.add(sanciones.get(i));
+				id=m.obtenerId(dni);
+				for(int i=0;i<sanciones.size();i++){
+					if(sanciones.get(i).getSanctionHolder().getId()==id){
+						sancionesConductor.add(sanciones.get(i));
+						cont++;
 					}
-					for(int i=0;i<sancionesConductor.size();i++){
-						//Error, no se muestra el id que corresponde, pero paga la sancion correcta
-						model_2.addElement(sanciones.get(i).getId());
-					}
-				}catch(Exception ex){
-					JOptionPane.showMessageDialog(contentPane, "Este DNI no está multado", "Radar", JOptionPane.ERROR_MESSAGE);
-					txtDni_2.setText(" ");
 				}
-				
+				if(cont!=0){
+					for(int i=0;i<sancionesConductor.size();i++){
+						model_2.addElement(sancionesConductor.get(i).getId());
+					}
+				}else{
+					JOptionPane.showMessageDialog(contentPane, "Este DNI no está multado", "Radar", JOptionPane.ERROR_MESSAGE);
+					txtDni_2.setText("");
+				}		
 			}else{
 				JOptionPane.showMessageDialog(contentPane, "Dni incorrecto", "Radar", JOptionPane.ERROR_MESSAGE);
 				txtDni_2.setText("");
