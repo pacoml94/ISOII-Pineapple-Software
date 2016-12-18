@@ -23,7 +23,7 @@ public class Radar {
 		licencia= calcularLicencia();
 		//Rango ciudades
 		ciudadExp = ciudad[(int) (Math.random()*(ciudad.length-1))];
-		System.out.println(licencia+" "+velocidad+" "+velocidad_max+" "+ciudadExp+" nop");
+		//System.out.println(licencia+" "+velocidad+" "+velocidad_max+" "+ciudadExp);
 		
 		int idExpediente=manager.openInquiry(licencia, velocidad, ciudadExp, velocidad_max);
 	}

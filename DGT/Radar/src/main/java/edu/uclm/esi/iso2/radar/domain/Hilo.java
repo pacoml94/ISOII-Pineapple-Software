@@ -1,7 +1,7 @@
 package edu.uclm.esi.iso2.radar.domain;
 
 public class Hilo extends Thread{
-	private boolean funcionando;
+	private boolean funcionando=true;
 	Radar radar = new Radar();
 	
 	public void detener(){
