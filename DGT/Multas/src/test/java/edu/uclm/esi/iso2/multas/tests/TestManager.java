@@ -27,7 +27,9 @@ public class TestManager {
     private Configuration cfg;
     private SessionFactory factory;
     private Session session;
-
+    private Manager manager = Manager.get();
+    private String [] lugares = {"Puertollano","Bilbao","Madrid","Toledo","Cadiz","Barcelona","Ciudad Real","Santiago de Compostela","Oviedo","Gijon","Valladolid","Zaragoza","Valencia","Sevilla","Albacete"};
+    
     /**@Before
     public void setUp() throws IOException {
         cfg=new Configuration();
@@ -42,8 +44,8 @@ public class TestManager {
         query.executeUpdate();
         t.commit();
     }**/
-
-   /* @Test
+    /*
+   @Test
     public void test() {
         Manager m = Manager.get();
         int idInquiry = m.openInquiry("0000", 200, "Ciudad Real", 120);
@@ -56,14 +58,14 @@ public class TestManager {
         m.pay(s.getId());
         assertFalse(driver.getPoints()==12);
     }*/
-    
+    /*
 	@Test
 	public void test140_120() {
 		Manager m=Manager.get();
 		int idExpediente=m.openInquiry("0001", 140, "La Ronda", 120);
 		Sanction multa=m.identifyDriver(idExpediente, "5000002");
-		
-		m.pay(multa);
+		multa.pay();
+		m.pay(multa.getId());
 		assertNotNull(multa.getDateOfPayment());
 		assertTrue(multa.getAmount()==100);
 		assertTrue(multa.getPoints()==0);
@@ -74,47 +76,131 @@ public class TestManager {
 		Manager m=Manager.get();
 		int idExpediente=m.openInquiry("0001", 160, "La Ronda", 120);
 		Sanction multa=m.identifyDriver(idExpediente, "5000002");
-		
-		m.pay(multa);
+		multa.pay();
+		m.pay(multa.getId());
 		assertNotNull(multa.getDateOfPayment());
 		assertTrue(multa.getAmount()==300);
 		assertTrue(multa.getPoints()==2);
+	}*/
+
+	@Test
+	public void testmaxSpeed30() {
+		int ciudadAleatoria;
+		for(int i = 31; i < 82; i++) {
+			ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
+			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 30);
+			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
+			manager.pay(multa.getId());
+			assertNotNull(multa.getDateOfReception());
+		}
 	}
 	
 	@Test
-	public void test150_80() {
-		Manager m=Manager.get();
-		int idExpediente=m.openInquiry("0005", 150, "Bilbao", 80);
-		Sanction multa=m.identifyDriver(idExpediente, "5000002");
-		
-		m.pay(multa);
-		assertNotNull(multa.getDateOfPayment());
-		assertTrue(multa.getAmount()==500);
-		assertTrue(multa.getPoints()==6);
+	public void testmaxSpeed40() {
+		int ciudadAleatoria;
+		for(int i = 41; i < 92; i++) {
+			ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
+			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 40);
+			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
+			manager.pay(multa.getId());
+			assertNotNull(multa.getDateOfReception());
+		}
 	}
 	
 	@Test
-	public void test95_60() {
-		Manager m=Manager.get();
-		int idExpediente=m.openInquiry("0010", 95, "Madrid", 60);
-		Sanction multa=m.identifyDriver(idExpediente, "5000000");
-		
-		m.pay(multa);
-		assertNotNull(multa.getDateOfPayment());
-		assertTrue(multa.getAmount()==300);
-		assertTrue(multa.getPoints()==2);
+	public void testmaxSpeed50() {
+		int ciudadAleatoria;
+		for(int i = 51; i < 102; i++) {
+			ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
+			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 50);
+			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
+			manager.pay(multa.getId());
+			assertNotNull(multa.getDateOfReception());
+		}
 	}
 	
 	@Test
-	public void test105_70() {
-		Manager m=Manager.get();
-		int idExpediente=m.openInquiry("0006", 105, "Sevilla", 70);
-		Sanction multa=m.identifyDriver(idExpediente, "5000002");
-		
-		m.pay(multa);
-		assertNotNull(multa.getDateOfPayment());
-		assertTrue(multa.getAmount()==300);
-		assertTrue(multa.getPoints()==2);
+	public void testmaxSpeed60() {
+		int ciudadAleatoria;
+		for(int i = 61; i < 132; i++) {
+			ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
+			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 60);
+			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
+			manager.pay(multa.getId());
+			assertNotNull(multa.getDateOfReception());
+		}
+	}
+	
+	@Test
+	public void testmaxSpeed70() {
+		int ciudadAleatoria;
+		for(int i = 71; i < 142; i++) {
+			ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
+			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 70);
+			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
+			manager.pay(multa.getId());
+			assertNotNull(multa.getDateOfReception());
+		}
+	}
+	
+	@Test
+	public void testmaxSpeed80() {
+		int ciudadAleatoria;
+		for(int i = 81; i < 152; i++) {
+			ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
+			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 80);
+			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
+			manager.pay(multa.getId());
+			assertNotNull(multa.getDateOfReception());
+		}
+	}
+	
+	@Test
+	public void testmaxSpeed90() {
+		int ciudadAleatoria;
+		for(int i = 91; i < 162; i++) {
+			ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
+			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 90);
+			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
+			manager.pay(multa.getId());
+			assertNotNull(multa.getDateOfReception());
+		}
+	}
+	
+	@Test
+	public void testmaxSpeed100() {
+		int ciudadAleatoria;
+		for(int i = 101; i < 172; i++) {
+			ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
+			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 100);
+			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
+			manager.pay(multa.getId());
+			assertNotNull(multa.getDateOfReception());
+		}
+	}
+	
+	@Test
+	public void testmaxSpeed110() {
+		int ciudadAleatoria;
+		for(int i = 111; i < 182; i++) {
+			ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
+			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 110);
+			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
+			manager.pay(multa.getId());
+			assertNotNull(multa.getDateOfReception());
+		}
+	}
+	
+	@Test
+	public void testmaxSpeed120() {
+		int ciudadAleatoria;
+		for(int i = 121; i < 192; i++) {
+			ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
+			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 120);
+			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
+			manager.pay(multa.getId());
+			assertNotNull(multa.getDateOfReception());
+		}
 	}
 	
 	@Test
@@ -131,4 +217,5 @@ public class TestManager {
 		
 		assertTrue(v.getOwner().getId()==o.getId());
 	}
+
 }
