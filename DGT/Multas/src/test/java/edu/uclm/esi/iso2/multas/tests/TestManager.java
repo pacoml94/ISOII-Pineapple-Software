@@ -12,10 +12,6 @@ import org.hibernate.cfg.Configuration;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.uclm.esi.iso2.multas.dao.DriverDao;
-import edu.uclm.esi.iso2.multas.dao.GeneralDao;
-import edu.uclm.esi.iso2.multas.domain.Driver;
-import edu.uclm.esi.iso2.multas.domain.Inquiry;
 import edu.uclm.esi.iso2.multas.domain.Manager;
 import edu.uclm.esi.iso2.multas.domain.Sanction;
 
@@ -24,7 +20,9 @@ public class TestManager {
     private Configuration cfg;
     private SessionFactory factory;
     private Session session;
-
+    private Manager manager = Manager.get();
+    private String [] lugares = {"Madrid", "Barcelona", "Bilbao", "Ciudad Real", "A Coruña"};
+    
     /**@Before
     public void setUp() throws IOException {
         cfg=new Configuration();
@@ -53,7 +51,7 @@ public class TestManager {
         m.pay(s.getId());
         assertFalse(driver.getPoints()==12);
     }*/
-    
+    /*
 	@Test
 	public void test140_120() {
 		Manager m=Manager.get();
@@ -76,6 +74,18 @@ public class TestManager {
 		assertNotNull(multa.getDateOfPayment());
 		assertTrue(multa.getAmount()==300);
 		assertTrue(multa.getPoints()==2);
-	}
+	}*/
 
+	@Test
+	public void testmaxSpeed30() {
+		int ciudadAleatoria;
+		for(int i = 31; i < 82; i++) {
+			ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
+			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 30);
+			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
+			manager.pay(multa.getId());
+			assertNotNull(multa.getDateOfReception());
+		}
+	}
+	
 }
