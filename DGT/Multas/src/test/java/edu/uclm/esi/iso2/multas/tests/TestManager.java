@@ -12,7 +12,13 @@ import org.hibernate.cfg.Configuration;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.uclm.esi.iso2.multas.dao.DriverDao;
+import edu.uclm.esi.iso2.multas.dao.GeneralDao;
+import edu.uclm.esi.iso2.multas.dao.OwnerDao;
+import edu.uclm.esi.iso2.multas.domain.Driver;
+import edu.uclm.esi.iso2.multas.domain.Inquiry;
 import edu.uclm.esi.iso2.multas.domain.Manager;
+import edu.uclm.esi.iso2.multas.domain.Owner;
 import edu.uclm.esi.iso2.multas.domain.Sanction;
 
 public class TestManager {
@@ -37,8 +43,8 @@ public class TestManager {
         query.executeUpdate();
         t.commit();
     }**/
-
-   /* @Test
+    /*
+   @Test
     public void test() {
         Manager m = Manager.get();
         int idInquiry = m.openInquiry("0000", 200, "Ciudad Real", 120);
@@ -194,6 +200,13 @@ public class TestManager {
 			manager.pay(multa.getId());
 			assertNotNull(multa.getDateOfReception());
 		}
+	}
+
+	@Test
+	public void testOwner() {
+        OwnerDao ownerDao = new OwnerDao();
+        Owner owner = ownerDao.findByDni("0001");
+        assertNotNull(owner);
 	}
 	
 }
