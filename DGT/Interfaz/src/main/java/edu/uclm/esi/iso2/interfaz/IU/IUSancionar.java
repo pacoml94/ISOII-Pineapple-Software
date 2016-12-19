@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 
+import javax.swing.AbstractButton;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.GridBagLayout;
@@ -51,6 +52,11 @@ public class IUSancionar extends JFrame {
 	private int idExpediente;
 	private JTextField txtDni_2;
 	private final JLabel lblSelecioneUnaSancin = new JLabel("Selecione una sanción para pagar");
+	private final JLabel lblIntroduzcaLaMatrcula = new JLabel("Introduzca la matrícula del coche que quiere cambiar su propietario:");
+	private final JTextField txt_licencia = new JTextField();
+	private final JLabel lblIntroduzcaElNuevo = new JLabel("Introduzca el nuevo propietario del vehículo:");
+	private final JTextField txt_dni3 = new JTextField();
+	private final JButton btnAceptar = new JButton("Aceptar");
 	/**
 	 * Launch the application.
 	 */
@@ -71,6 +77,10 @@ public class IUSancionar extends JFrame {
 	 * Create the frame.
 	 */
 	public IUSancionar() {
+		txt_dni3.setBounds(34, 138, 86, 20);
+		txt_dni3.setColumns(10);
+		txt_licencia.setBounds(34, 63, 86, 20);
+		txt_licencia.setColumns(10);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 449, 459);
 		contentPane = new JPanel();
@@ -147,7 +157,7 @@ public class IUSancionar extends JFrame {
 		scrollPane_1.setViewportView(lstSanciones);
 		
 		JLabel label_1 = new JLabel("Inserte DNI:");
-		label_1.setBounds(10, 20, 60, 14);
+		label_1.setBounds(10, 20, 70, 14);
 		pnl_pagarSancion.add(label_1);
 		
 		txtDni_2 = new JTextField();
@@ -162,7 +172,7 @@ public class IUSancionar extends JFrame {
 		
 		JButton btn_pagar = new JButton("Pagar Multa");
 		btn_pagar.addActionListener(new Btn_pagarActionListener());
-		btn_pagar.setBounds(280, 114, 89, 23);
+		btn_pagar.setBounds(267, 114, 102, 23);
 		pnl_pagarSancion.add(btn_pagar);
 		{
 			lblSelecioneUnaSancin.setBounds(205, 71, 171, 14);
@@ -171,6 +181,26 @@ public class IUSancionar extends JFrame {
 		
 		JPanel pnl_cambiarPropietario = new JPanel();
 		tabbedPane.addTab("Cambiar propietario", null, pnl_cambiarPropietario, null);
+		pnl_cambiarPropietario.setLayout(null);
+		{
+			lblIntroduzcaLaMatrcula.setBounds(10, 36, 398, 14);
+			pnl_cambiarPropietario.add(lblIntroduzcaLaMatrcula);
+		}
+		{
+			pnl_cambiarPropietario.add(txt_licencia);
+		}
+		{
+			lblIntroduzcaElNuevo.setBounds(10, 113, 320, 14);
+			pnl_cambiarPropietario.add(lblIntroduzcaElNuevo);
+		}
+		{
+			pnl_cambiarPropietario.add(txt_dni3);
+		}
+		{
+			btnAceptar.addActionListener(new BtnCambiarPropietarioActionListener());
+			btnAceptar.setBounds(76, 191, 254, 127);
+			pnl_cambiarPropietario.add(btnAceptar);
+		}
 	}
 	
 	private class BtnListarSancionesActionListener implements ActionListener {
@@ -201,7 +231,7 @@ public class IUSancionar extends JFrame {
 				JOptionPane.showMessageDialog(contentPane, "Sanción hecha con éxito", "Radar", JOptionPane.INFORMATION_MESSAGE);
 				//System.out.println(multa.getId()+" "+multa.getAmount()+" "+multa.getPoints()+" "+multa.getDateOfPayment()+" "+multa.getDateOfReception());
 				}catch(Exception ex){
-					JOptionPane.showMessageDialog(contentPane, "Este DNI no se pertenece a ningún conductor", "Radar", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(contentPane, "Este DNI no pertenece a ningún conductor", "Radar", JOptionPane.ERROR_MESSAGE);
 					txtDni.setText("");
 				}
 				
@@ -253,6 +283,26 @@ public class IUSancionar extends JFrame {
 			
 			m.pay(sancionesConductor.get(idSancion));
 			JOptionPane.showMessageDialog(contentPane, "Sanción pagada correctamente", "Radar", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	private class BtnCambiarPropietarioActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			String dni = txt_dni3.getText();
+			String license = txt_licencia.getText();
+			if(dni.matches("[0-9]*") && dni.length()==7 && license.matches("[0-9]*") && license.length()==4){
+				try{
+					m.changeOwner(license, dni);
+					JOptionPane.showMessageDialog(contentPane, "Cambio hecho correctamente", "Radar", JOptionPane.INFORMATION_MESSAGE);	
+				}catch(Exception ex){
+					JOptionPane.showMessageDialog(contentPane, "Este Dni o licencia no existen", "Radar", JOptionPane.ERROR_MESSAGE);
+					txt_dni3.setText("");
+					txt_licencia.setText("");
+				}
+			}else{
+				JOptionPane.showMessageDialog(contentPane, "Dni o licencia incorrecta", "Radar", JOptionPane.ERROR_MESSAGE);
+				txt_dni3.setText("");
+				txt_licencia.setText("");
+			}
 		}
 	}
 }
