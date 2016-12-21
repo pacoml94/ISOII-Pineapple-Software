@@ -201,7 +201,7 @@ public class Inquiry {
 		}
 		return 0;
 	}
-
+	
 	private int calculateAmount() {
 		if (maxSpeed==30) {
 			if (speed>=31 && speed<=50) 

@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.junit.Before;
 import org.junit.Test;
+import org.w3c.dom.css.ElementCSSInlineStyle;
 
 import edu.uclm.esi.iso2.multas.dao.DriverDao;
 import edu.uclm.esi.iso2.multas.dao.GeneralDao;
@@ -95,19 +96,30 @@ public class TestManager {
 			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
 			manager.pay(multa.getId());
 			assertNotNull(multa.getDateOfReception());
+			
+			if (i>30 && i<51){
+				assertTrue(multa.getPoints()==12);
+			} else if(i>50 && i<61){
+				assertTrue(multa.getPoints()==10);
+			} else if(i>60 && i<71){
+				assertTrue(multa.getPoints()==8);
+			} else if(i>70 && i<81){
+				assertTrue(multa.getPoints()==6);			
+			} else {
+				assertTrue(multa.getPoints()==6);
+			}
 		}
 	}
 		
-
 	@Test
 	public void testmaxSpeed40() {
 		int ciudadAleatoria;
 		for(int i = 41; i < 92; i++) {
 			ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
 			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 40);
-			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
-			
-			/*if (i>= 61 && i<=70) {
+			Sanction multa = manager.identifyDriver(idExpediente, "5000002");			
+			manager.pay(multa);
+			if (i>= 61 && i<=70) {
 				assertTrue(multa.getPoints()==10);
 			} else if (i >= 71 && i <= 80) {
 				assertTrue(multa.getPoints()==8);				
@@ -115,9 +127,7 @@ public class TestManager {
 				assertTrue(multa.getPoints()==6);
 			} else if (i >= 91) {
 				assertTrue(multa.getPoints()==6);
-			}*/
-			
-			manager.pay(multa.getId());
+			}
 			assertNotNull(multa.getDateOfReception());
 		}
 	}
@@ -130,6 +140,19 @@ public class TestManager {
 			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 50);
 			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
 			manager.pay(multa);
+			
+			if (i>50 && i<71){
+				assertTrue(multa.getPoints()==12);
+			} else if(i>70 && i<81){
+				assertTrue(multa.getPoints()==10);
+			} else if(i>80 && i<91){
+				assertTrue(multa.getPoints()==8);
+			} else if(i>90 && i<101){
+				assertTrue(multa.getPoints()==6);			
+			} else {
+				assertTrue(multa.getPoints()==6);
+			}
+			
 			assertNotNull(multa.getDateOfReception());
 		}
 	}
@@ -142,6 +165,20 @@ public class TestManager {
 			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 60);
 			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
 			manager.pay(multa.getId());
+			
+			if (i>60 && i<91){
+				assertTrue(multa.getPoints()==12);
+			} else if(i>90 && i<111){
+				assertTrue(multa.getPoints()==10);
+			} else if(i>110 && i<121){
+				assertTrue(multa.getPoints()==8);
+			} else if(i>120 && i<131){
+				assertTrue(multa.getPoints()==6);			
+			} else {
+				assertTrue(multa.getPoints()==6);
+			}
+			
+			
 			assertNotNull(multa.getDateOfReception());
 		}
 	}
@@ -154,6 +191,19 @@ public class TestManager {
 			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 70);
 			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
 			manager.pay(multa.getId());
+			
+			if (i>70 && i<101){
+				assertTrue(multa.getPoints()==12);
+			} else if(i>100 && i<121){
+				assertTrue(multa.getPoints()==10);
+			} else if(i>120 && i<131){
+				assertTrue(multa.getPoints()==8);
+			} else if(i>130 && i<141){
+				assertTrue(multa.getPoints()==6);			
+			} else {
+				assertTrue(multa.getPoints()==6);
+			}
+			
 			assertNotNull(multa.getDateOfReception());
 		}
 	}
@@ -166,6 +216,19 @@ public class TestManager {
 			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 80);
 			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
 			manager.pay(multa.getId());
+			
+			if (i>80 && i<111){
+				assertTrue(multa.getPoints()==12);
+			} else if(i>110 && i<131){
+				assertTrue(multa.getPoints()==10);
+			} else if(i>130 && i<141){
+				assertTrue(multa.getPoints()==8);
+			} else if(i>140 && i<151){
+				assertTrue(multa.getPoints()==6);			
+			} else {
+				assertTrue(multa.getPoints()==6);
+			}
+			
 			assertNotNull(multa.getDateOfReception());
 		}
 	}
@@ -177,7 +240,20 @@ public class TestManager {
 			ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
 			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 90);
 			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
-			manager.pay(multa.getId());
+			manager.pay(multa);
+			
+			if (i>90 && i<121){
+				assertTrue(multa.getPoints()==12);
+			} else if(i>120 && i<141){
+				assertTrue(multa.getPoints()==10);
+			} else if(i>140 && i<151){
+				assertTrue(multa.getPoints()==8);
+			} else if(i>150 && i<161){
+				assertTrue(multa.getPoints()==6);			
+			} else {
+				assertTrue(multa.getPoints()==6);
+			}
+			
 			assertNotNull(multa.getDateOfReception());
 		}
 	}
@@ -190,6 +266,19 @@ public class TestManager {
 			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 100);
 			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
 			manager.pay(multa.getId());
+			
+			if (i>100 && i<131){
+				assertTrue(multa.getPoints()==12);
+			} else if(i>130 && i<151){
+				assertTrue(multa.getPoints()==10);
+			} else if(i>150 && i<161){
+				assertTrue(multa.getPoints()==8);
+			} else if(i>160 && i<171){
+				assertTrue(multa.getPoints()==6);			
+			} else {
+				assertTrue(multa.getPoints()==6);
+			}
+			
 			assertNotNull(multa.getDateOfReception());
 		}
 	}
@@ -202,6 +291,19 @@ public class TestManager {
 			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 110);
 			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
 			manager.pay(multa.getId());
+			
+			if (i>110 && i<141){
+				assertTrue(multa.getPoints()==12);
+			} else if(i>140 && i<161){
+				assertTrue(multa.getPoints()==10);
+			} else if(i>160 && i<171){
+				assertTrue(multa.getPoints()==8);
+			} else if(i>170 && i<181){
+				assertTrue(multa.getPoints()==6);			
+			} else {
+				assertTrue(multa.getPoints()==6);
+			}
+			
 			assertNotNull(multa.getDateOfReception());
 		}
 	}
@@ -214,6 +316,19 @@ public class TestManager {
 			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 120);
 			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
 			manager.pay(multa.getId());
+			
+			if (i>120 && i<151){
+				assertTrue(multa.getPoints()==12);
+			} else if(i>150 && i<171){
+				assertTrue(multa.getPoints()==10);
+			} else if(i>170 && i<181){
+				assertTrue(multa.getPoints()==8);
+			} else if(i>180 && i<191){
+				assertTrue(multa.getPoints()==6);			
+			} else {
+				assertTrue(multa.getPoints()==6);
+			}
+			
 			assertNotNull(multa.getDateOfReception());
 		}
 	}
