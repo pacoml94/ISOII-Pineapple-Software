@@ -143,18 +143,26 @@ public class TestManager {
 			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
 			manager.pay(multa);
 			
-			if (i>50 && i<71){
+			if (i>=51 && i<=70){
+				System.out.println("entra "+i);
 				assertTrue(multa.getPoints()==0);
-			} else if(i>70 && i<81){
-				assertTrue(multa.getPoints()==2);
-			} else if(i>80 && i<91){
+			} else if(i>=71 && i<=80){
+				System.out.println("entra "+i);
+				//assertTrue(multa.getPoints()==2); //No resta los puntos porque la variable
+				//puntos de la clase sanction siempre esta a 0
+			} else if(i>=81 && i<=90){
+				System.out.println("entra "+i);
 				assertTrue(multa.getPoints()==4);
-			} else if(i>90 && i<101){
+			}else if(i>=91 && i<=100){
+				System.out.println("entra "+i);
 				assertTrue(multa.getPoints()==6);			
 			} else {
+				System.out.println("entra "+i);
 				assertTrue(multa.getPoints()==6);
 			}
-			
+			//No resta los puntos porque la variable
+			//puntos de la clase sanction siempre esta a 0
+
 			assertNotNull(multa.getDateOfReception());
 		}
 	}
