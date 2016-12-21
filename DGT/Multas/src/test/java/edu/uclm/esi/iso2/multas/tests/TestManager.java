@@ -2,6 +2,8 @@ package edu.uclm.esi.iso2.multas.tests;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -20,6 +22,7 @@ import edu.uclm.esi.iso2.multas.domain.Inquiry;
 import edu.uclm.esi.iso2.multas.domain.Manager;
 import edu.uclm.esi.iso2.multas.domain.Owner;
 import edu.uclm.esi.iso2.multas.domain.Sanction;
+import edu.uclm.esi.iso2.multas.domain.SanctionHolder;
 import edu.uclm.esi.iso2.multas.domain.Vehicle;
 
 public class TestManager {
@@ -94,7 +97,8 @@ public class TestManager {
 			assertNotNull(multa.getDateOfReception());
 		}
 	}
-	
+		
+
 	@Test
 	public void testmaxSpeed40() {
 		int ciudadAleatoria;
@@ -102,11 +106,22 @@ public class TestManager {
 			ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
 			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 40);
 			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
+			
+			/*if (i>= 61 && i<=70) {
+				assertTrue(multa.getPoints()==10);
+			} else if (i >= 71 && i <= 80) {
+				assertTrue(multa.getPoints()==8);				
+			} else if (i >= 81 && i <= 90) {
+				assertTrue(multa.getPoints()==6);
+			} else if (i >= 91) {
+				assertTrue(multa.getPoints()==6);
+			}*/
+			
 			manager.pay(multa.getId());
 			assertNotNull(multa.getDateOfReception());
 		}
 	}
-	
+
 	@Test
 	public void testmaxSpeed50() {
 		int ciudadAleatoria;
@@ -114,7 +129,7 @@ public class TestManager {
 			ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
 			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 50);
 			Sanction multa = manager.identifyDriver(idExpediente, "5000002");
-			manager.pay(multa.getId());
+			manager.pay(multa);
 			assertNotNull(multa.getDateOfReception());
 		}
 	}
@@ -217,5 +232,47 @@ public class TestManager {
 		
 		assertTrue(v.getOwner().getId()==o.getId());
 	}
+	
+	@Test
+	public void testDriver() {
+		DriverDao driverDao = new DriverDao();
+		Driver d = driverDao.findByDni("5000002");
+		d.setPoints(10);
+		d.setDni("5768932");
+		
+		assertTrue(d.getPoints()==10);
+		assertTrue(d.getDni()=="5768932");
+	}
 
+	@Test
+	public void testObtenerExpedientes() {
+		List<Inquiry> list = manager.obtenerInquiry();
+		assertNotNull(list);
+	}
+	
+	@Test
+	public void testObtenerSanciones() {
+		List<Sanction> list = manager.obtenerSanction();
+		assertNotNull(list);
+	}
+	
+	@Test
+	public void testObtenerID() {
+		int idConductor = manager.obtenerId("5000002");
+		int id = manager.obtenerId("5000008");
+		assertNotNull(idConductor);
+		assertNotNull(id);
+	}
+	
+	@Test
+	public void testEquals() {
+		GeneralDao<Sanction> daoS = new GeneralDao<>();
+		GeneralDao<SanctionHolder> daoSH = new GeneralDao<>();
+		GeneralDao<Vehicle> daoV = new GeneralDao<>();
+		
+		Sanction s = daoS.findById(Sanction.class, 13290);
+		Sanction t = daoS.findById(Sanction.class, 13290);
+		
+		assertTrue(s.equals((Object) t));
+	}
 }
