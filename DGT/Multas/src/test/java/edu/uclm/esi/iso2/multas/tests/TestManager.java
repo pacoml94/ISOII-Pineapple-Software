@@ -98,14 +98,15 @@ public class TestManager {
 			assertNotNull(multa.getDateOfReception());
 			
 			if (i>30 && i<51){
-				assertTrue(multa.getPoints()==12);
+				assertTrue(multa.getPoints()==0);
 			} else if(i>50 && i<61){
-				assertTrue(multa.getPoints()==10);
+				assertTrue(multa.getPoints()==2);
 			} else if(i>60 && i<71){
-				assertTrue(multa.getPoints()==8);
+				assertTrue(multa.getPoints()==4);
 			} else if(i>70 && i<81){
 				assertTrue(multa.getPoints()==6);			
 			} else {
+				System.out.println(multa.getPoints());
 				assertTrue(multa.getPoints()==6);
 			}
 		}
@@ -119,10 +120,11 @@ public class TestManager {
 			int idExpediente = manager.openInquiry("0002", i, lugares[ciudadAleatoria], 40);
 			Sanction multa = manager.identifyDriver(idExpediente, "5000002");			
 			manager.pay(multa);
+			
 			if (i>= 61 && i<=70) {
-				assertTrue(multa.getPoints()==10);
+				assertTrue(multa.getPoints()==2);
 			} else if (i >= 71 && i <= 80) {
-				assertTrue(multa.getPoints()==8);				
+				assertTrue(multa.getPoints()==4);				
 			} else if (i >= 81 && i <= 90) {
 				assertTrue(multa.getPoints()==6);
 			} else if (i >= 91) {
@@ -142,11 +144,11 @@ public class TestManager {
 			manager.pay(multa);
 			
 			if (i>50 && i<71){
-				assertTrue(multa.getPoints()==12);
+				assertTrue(multa.getPoints()==0);
 			} else if(i>70 && i<81){
-				assertTrue(multa.getPoints()==10);
+				assertTrue(multa.getPoints()==2);
 			} else if(i>80 && i<91){
-				assertTrue(multa.getPoints()==8);
+				assertTrue(multa.getPoints()==4);
 			} else if(i>90 && i<101){
 				assertTrue(multa.getPoints()==6);			
 			} else {
@@ -167,11 +169,11 @@ public class TestManager {
 			manager.pay(multa.getId());
 			
 			if (i>60 && i<91){
-				assertTrue(multa.getPoints()==12);
+				assertTrue(multa.getPoints()==0);
 			} else if(i>90 && i<111){
-				assertTrue(multa.getPoints()==10);
+				assertTrue(multa.getPoints()==2);
 			} else if(i>110 && i<121){
-				assertTrue(multa.getPoints()==8);
+				assertTrue(multa.getPoints()==4);
 			} else if(i>120 && i<131){
 				assertTrue(multa.getPoints()==6);			
 			} else {
@@ -193,11 +195,11 @@ public class TestManager {
 			manager.pay(multa.getId());
 			
 			if (i>70 && i<101){
-				assertTrue(multa.getPoints()==12);
+				assertTrue(multa.getPoints()==0);
 			} else if(i>100 && i<121){
-				assertTrue(multa.getPoints()==10);
+				assertTrue(multa.getPoints()==2);
 			} else if(i>120 && i<131){
-				assertTrue(multa.getPoints()==8);
+				assertTrue(multa.getPoints()==4);
 			} else if(i>130 && i<141){
 				assertTrue(multa.getPoints()==6);			
 			} else {
@@ -218,11 +220,11 @@ public class TestManager {
 			manager.pay(multa.getId());
 			
 			if (i>80 && i<111){
-				assertTrue(multa.getPoints()==12);
+				assertTrue(multa.getPoints()==0);
 			} else if(i>110 && i<131){
-				assertTrue(multa.getPoints()==10);
+				assertTrue(multa.getPoints()==2);
 			} else if(i>130 && i<141){
-				assertTrue(multa.getPoints()==8);
+				assertTrue(multa.getPoints()==4);
 			} else if(i>140 && i<151){
 				assertTrue(multa.getPoints()==6);			
 			} else {
@@ -243,11 +245,11 @@ public class TestManager {
 			manager.pay(multa);
 			
 			if (i>90 && i<121){
-				assertTrue(multa.getPoints()==12);
+				assertTrue(multa.getPoints()==0);
 			} else if(i>120 && i<141){
-				assertTrue(multa.getPoints()==10);
+				assertTrue(multa.getPoints()==2);
 			} else if(i>140 && i<151){
-				assertTrue(multa.getPoints()==8);
+				assertTrue(multa.getPoints()==4);
 			} else if(i>150 && i<161){
 				assertTrue(multa.getPoints()==6);			
 			} else {
@@ -268,11 +270,11 @@ public class TestManager {
 			manager.pay(multa.getId());
 			
 			if (i>100 && i<131){
-				assertTrue(multa.getPoints()==12);
+				assertTrue(multa.getPoints()==0);
 			} else if(i>130 && i<151){
-				assertTrue(multa.getPoints()==10);
+				assertTrue(multa.getPoints()==2);
 			} else if(i>150 && i<161){
-				assertTrue(multa.getPoints()==8);
+				assertTrue(multa.getPoints()==4);
 			} else if(i>160 && i<171){
 				assertTrue(multa.getPoints()==6);			
 			} else {
@@ -293,11 +295,11 @@ public class TestManager {
 			manager.pay(multa.getId());
 			
 			if (i>110 && i<141){
-				assertTrue(multa.getPoints()==12);
+				assertTrue(multa.getPoints()==0);
 			} else if(i>140 && i<161){
-				assertTrue(multa.getPoints()==10);
+				assertTrue(multa.getPoints()==2);
 			} else if(i>160 && i<171){
-				assertTrue(multa.getPoints()==8);
+				assertTrue(multa.getPoints()==4);
 			} else if(i>170 && i<181){
 				assertTrue(multa.getPoints()==6);			
 			} else {
@@ -318,11 +320,11 @@ public class TestManager {
 			manager.pay(multa.getId());
 			
 			if (i>120 && i<151){
-				assertTrue(multa.getPoints()==12);
+				assertTrue(multa.getPoints()==0);
 			} else if(i>150 && i<171){
-				assertTrue(multa.getPoints()==10);
+				assertTrue(multa.getPoints()==2);
 			} else if(i>170 && i<181){
-				assertTrue(multa.getPoints()==8);
+				assertTrue(multa.getPoints()==4);
 			} else if(i>180 && i<191){
 				assertTrue(multa.getPoints()==6);			
 			} else {
