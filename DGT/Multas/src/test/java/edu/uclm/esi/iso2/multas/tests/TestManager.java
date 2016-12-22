@@ -173,10 +173,12 @@ public class TestManager {
 		int ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
 		int idExpediente = manager.openInquiry("0002", 100, lugares[ciudadAleatoria], 60);
 		Sanction multa = manager.identifyDriver(idExpediente, "5000002");
+		System.out.println(multa.getId());
+		System.out.println(multa.getPoints());
 		manager.pay(multa.getId());
 		DriverDao driverDao = new DriverDao();
 		/*2 p y 300 €*/
-		Driver driver = driverDao.findByDni("5000002");
+		Driver driver = driverDao.findById(Driver.class, 1);
 		assertNotNull(multa.getDateOfReception());
 		
 		assertTrue(driver.getPoints()==10);

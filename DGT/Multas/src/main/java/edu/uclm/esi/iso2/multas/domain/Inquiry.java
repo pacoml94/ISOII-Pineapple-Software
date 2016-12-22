@@ -1,6 +1,8 @@
 package edu.uclm.esi.iso2.multas.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -55,7 +57,7 @@ public class Inquiry {
 	}
 
 	public Sanction createSanctionFor(String dni) {
-		int points=calculatePoints();
+		int points=calcularAmountAndPoints(maxSpeed, speed);
 		int amount=calculateAmount();
 		Sanction sanction=new Sanction();
 		DriverDao dao=new DriverDao();
@@ -318,16 +320,157 @@ public class Inquiry {
 		return 0;
 	}
 	
-	private int [][] calcularAmountAndPoints (int maxSpeed, int speed) {
-		int [][] intervalos = new int[6][4];
-		return new int [2][2];
+	private int calcularAmountAndPoints (double maxSpeed2, double speed2) {
+		List<Intervalo> intervalos = new ArrayList<>();
+		intervalos = construirIntervalo(speed2, maxSpeed2);
+		
+		for (int i = 0; i < intervalos.size(); i++) {
+
+			if (intervalos.get(i).getSpeed()<=speed2 /*&& intervalos.get(1).getSpeed()>=speed2*/) {
+				int devuelto = intervalos.get(i).getPoints();
+				return devuelto;
+			}
+		}
+		return 0;
 	}
 	
-	private int[][] construirIntervalo(int speed, int maxSpeed, int amount, int points) {
-		int [][] intervalo = new int[1][4];
+	private List <Intervalo> construirIntervalo(double speed2, double maxSpeed2) {
 		
+		List<Intervalo> intervalos = new ArrayList<>();
 		
-		return intervalo;
+		switch ((int) maxSpeed2) {
+		case 30:
+			if (speed2 >= 31 && speed2 <= 50) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 0, 100));
+			} else if (speed2 >= 51 && speed2 <= 60) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 2, 300));
+			} else if (speed2 >= 61 && speed2 <= 70) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 4, 400));
+			} else if (speed2 >= 71 && speed2 <= 80) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 500));
+			} else if (speed2 > 80) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 600));				
+			}
+			break;
+		case 40:
+			if (speed2 >= 41 && speed2 <= 60) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 0, 100));
+			} else if (speed2 >= 61 && speed2 <= 70) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 2, 300));
+			} else if (speed2 >= 81 && speed2 <= 90) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 4, 400));
+			} else if (speed2 >= 91 && speed2 <= 100) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 500));
+			} else if (speed2 > 100) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 600));				
+			}
+			break;
+		case 50:
+			if (speed2 >= 51 && speed2 <= 70) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 0, 100));
+			} else if (speed2 >= 71 && speed2 <= 80) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 2, 300));
+			} else if (speed2 >= 81 && speed2 <= 90) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 4, 400));
+			} else if (speed2 >= 91 && speed2 <= 100) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 500));
+			} else if (speed2 > 101) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 600));				
+			}
+			break;
+		case 60:
+			if (speed2 >= 61 && speed2 <= 90) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 0, 100));
+			} else if (speed2 >= 91 && speed2 <= 110) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 2, 300));
+			} else if (speed2 >= 111 && speed2 <= 120) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 4, 400));
+			} else if (speed2 >= 121 && speed2 <= 130) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 500));
+			} else if (speed2 > 131) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 600));				
+			}
+			break;
+		case 70:
+			if (speed2 >= 71 && speed2 <= 100) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 0, 100));
+			} else if (speed2 >= 101 && speed2 <= 120) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 2, 300));
+			} else if (speed2 >= 121 && speed2 <= 130) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 4, 400));
+			} else if (speed2 >= 131 && speed2 <= 140) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 500));
+			} else if (speed2 > 140) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 600));				
+			}
+			break;
+		case 80:
+			if (speed2 >= 81 && speed2 <= 110) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 0, 100));
+			} else if (speed2 >= 111 && speed2 <= 130) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 2, 300));
+			} else if (speed2 >= 131 && speed2 <= 140) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 4, 400));
+			} else if (speed2 >= 141 && speed2 <= 150) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 500));
+			} else if (speed2 > 150) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 600));				
+			}
+			break;
+		case 90:
+			if (speed2 >= 91 && speed2 <= 120) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 0, 100));
+			} else if (speed2 >= 121 && speed2 <= 140) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 2, 300));
+			} else if (speed2 >= 141 && speed2 <= 150) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 4, 400));
+			} else if (speed2 >= 151 && speed2 <= 160) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 500));
+			} else if (speed2 > 160) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 600));				
+			}
+			break;
+		case 100:
+			if (speed2 >= 101 && speed2 <= 130) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 0, 100));
+			} else if (speed2 >= 131 && speed2 <= 150) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 2, 300));
+			} else if (speed2 >= 151 && speed2 <= 160) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 4, 400));
+			} else if (speed2 >= 161 && speed2 <= 170) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 500));
+			} else if (speed2 > 170) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 600));				
+			}
+			break;
+		case 110:
+			if (speed2 >= 111 && speed2 <= 140) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 0, 100));
+			} else if (speed2 >= 141 && speed2 <= 160) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 2, 300));
+			} else if (speed2 >= 161 && speed2 <= 170) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 4, 400));
+			} else if (speed2 >= 171 && speed2 <= 180) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 500));
+			} else if (speed2 > 180) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 600));				
+			}
+			break;
+		case 120:
+			if (speed2 >= 121 && speed2 <= 150) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 0, 100));
+			} else if (speed2 >= 151 && speed2 <= 170) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 2, 300));
+			} else if (speed2 >= 171 && speed2 <= 180) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 4, 400));
+			} else if (speed2 >= 181 && speed2 <= 190) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 500));
+			} else if (speed2 > 190) {
+				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 600));				
+			}
+			break;
+		}
 		
+		return intervalos;
 	}
 }
