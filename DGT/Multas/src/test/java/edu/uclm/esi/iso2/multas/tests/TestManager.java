@@ -179,12 +179,9 @@ public class TestManager {
 		Driver driver = driverDao.findByDni("5000002");
 		assertNotNull(multa.getDateOfReception());
 		
-		try {
-			assertTrue(driver.getPoints()==10);
-			assertTrue(multa.getAmount()==300);
-		} catch (Exception e) {
-			fail("Deberian haberse restado los puntos. Puntos del conductor: "+driver.getPoints());
-		}
+		assertTrue(driver.getPoints()==10);
+		assertTrue(multa.getAmount()==300);
+		
 	}
 	
 	@Test

@@ -135,6 +135,9 @@ public class Inquiry {
 				return 4;
 			else if (speed>=81)
 				return 6;
+		/**
+		 * Se ha añadido la comprobación de la velocidad 50
+		 */
 		} else if (maxSpeed==50) {
 			if (speed>=51 && speed<=70) 
 				return 0;
@@ -144,6 +147,7 @@ public class Inquiry {
 				return 4;
 			else if (speed>=91)
 				return 6;
+		/************************************************************/
 		} else if (maxSpeed==60) {
 			if (speed>=61 && speed<=90) 
 				return 0;
@@ -312,5 +316,18 @@ public class Inquiry {
 			else return 600;
 		}
 		return 0;
+	}
+	
+	private int [][] calcularAmountAndPoints (int maxSpeed, int speed) {
+		int [][] intervalos = new int[6][4];
+		return new int [2][2];
+	}
+	
+	private int[][] construirIntervalo(int speed, int maxSpeed, int amount, int points) {
+		int [][] intervalo = new int[1][4];
+		
+		
+		return intervalo;
+		
 	}
 }
