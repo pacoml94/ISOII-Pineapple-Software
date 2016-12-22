@@ -148,7 +148,8 @@ public class TestManager {
 				assertTrue(multa.getPoints()==0);
 			} else if(i>=71 && i<=80){
 				System.out.println("entra "+i);
-				//assertTrue(multa.getPoints()==2); //No resta los puntos porque la variable
+				assertTrue(multa.getPoints()==2); 
+				//No resta los puntos porque la variable
 				//puntos de la clase sanction siempre esta a 0
 			} else if(i>=81 && i<=90){
 				System.out.println("entra "+i);
@@ -164,6 +165,25 @@ public class TestManager {
 			//puntos de la clase sanction siempre esta a 0
 
 			assertNotNull(multa.getDateOfReception());
+		}
+	}
+	
+	@Test
+	public void testFalloAlRestarPuntos() {
+		int ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
+		int idExpediente = manager.openInquiry("0002", 100, lugares[ciudadAleatoria], 60);
+		Sanction multa = manager.identifyDriver(idExpediente, "5000002");
+		manager.pay(multa.getId());
+		DriverDao driverDao = new DriverDao();
+		/*2 p y 300 €*/
+		Driver driver = driverDao.findByDni("5000002");
+		assertNotNull(multa.getDateOfReception());
+		
+		try {
+			assertTrue(driver.getPoints()==10);
+			assertTrue(multa.getAmount()==300);
+		} catch (Exception e) {
+			fail("Deberian haberse restado los puntos. Puntos del conductor: "+driver.getPoints());
 		}
 	}
 	
