@@ -135,6 +135,15 @@ public class Inquiry {
 				return 4;
 			else if (speed>=81)
 				return 6;
+		} else if (maxSpeed==50) {
+			if (speed>=51 && speed<=70) 
+				return 0;
+			else if (speed>=71 && speed<=80)
+				return 2;
+			else if (speed>=81 && speed<=90)
+				return 4;
+			else if (speed>=91)
+				return 6;
 		} else if (maxSpeed==60) {
 			if (speed>=61 && speed<=90) 
 				return 0;
