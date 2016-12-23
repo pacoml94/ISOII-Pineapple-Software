@@ -73,6 +73,8 @@ public class Inquiry {
 		sanction.setAmount(amount);
 		GeneralDao<Sanction> daoSanction=new GeneralDao<>();
 		daoSanction.insert(sanction);
+		GeneralDao<Inquiry> daoInquiry=new GeneralDao<>();
+		daoInquiry.update(this);
 		return this.sanction;
 	}
 
