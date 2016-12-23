@@ -90,6 +90,14 @@ public class Manager {
 		GeneralDao<Sanction> dao=new GeneralDao<>();
 		multa.pay();
 		dao.update(multa);
+		
+		//modificar puntos conductor
+		DriverDao driverDao=new DriverDao();
+		Driver driver = driverDao.findByDni(multa.getSanctionHolder().getDni());
+		int puntos_actuales = driver.getPoints();
+		int puntos_restar = multa.getPoints();
+		driver.setPoints(puntos_actuales - puntos_restar);
+		driverDao.update(driver);
 	}
 	
 	/**
