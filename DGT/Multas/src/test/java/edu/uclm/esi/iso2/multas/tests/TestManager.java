@@ -162,7 +162,8 @@ public class TestManager {
 			} else {
 				System.out.println("entra "+i);
 				assertTrue(multa.getPoints()==6);
-			}
+			} 
+	
 			//No resta los puntos porque la variable
 			//puntos de la clase sanction siempre esta a 0
 
@@ -173,19 +174,14 @@ public class TestManager {
 	@Test
 	public void testFalloAlRestarPuntos() {
 		int ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
-		int idExpediente = manager.openInquiry("0002", 82, lugares[ciudadAleatoria], 60);
-		Sanction multa = manager.identifyDriver(idExpediente, "5000002");
-		System.out.println(multa.getId());
-		System.out.println(multa.getPoints());
-		manager.pay(multa.getId());
-		DriverDao driverDao = new DriverDao();
-		/*2 p y 300 €*/
-		Driver driver = driverDao.findById(Driver.class, 1);
-		assertNotNull(multa.getDateOfReception());
-		
-		assertTrue(driver.getPoints()==10);
-		assertTrue(multa.getAmount()==300);
-		
+		int idExpediente = manager.openInquiry("0002", 95, lugares[ciudadAleatoria], 60);
+		Sanction multa = manager.identifyDriver(idExpediente, "5000020");
+		DriverDao paco = new DriverDao();
+		Driver javi = paco.findByDni("5000020");
+		manager.pay(multa);
+		Driver nacho = paco.findByDni("5000020");
+		assertTrue(javi.getPoints()!=nacho.getPoints());
+	
 	}
 	
 	@Test
