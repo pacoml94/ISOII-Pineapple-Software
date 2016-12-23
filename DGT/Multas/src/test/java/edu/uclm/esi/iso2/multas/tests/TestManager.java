@@ -121,7 +121,9 @@ public class TestManager {
 			Sanction multa = manager.identifyDriver(idExpediente, "5000002");			
 			manager.pay(multa);
 			
-			if (i>= 61 && i<=70) {
+			if (i>= 41 && i<=60) {
+				assertTrue(multa.getPoints()==0);
+			}else if(i>=61 && i<= 70){
 				assertTrue(multa.getPoints()==2);
 			} else if (i >= 71 && i <= 80) {
 				assertTrue(multa.getPoints()==4);				
@@ -171,7 +173,7 @@ public class TestManager {
 	@Test
 	public void testFalloAlRestarPuntos() {
 		int ciudadAleatoria = (int) ((Math.random()*(lugares.length-1)));
-		int idExpediente = manager.openInquiry("0002", 100, lugares[ciudadAleatoria], 60);
+		int idExpediente = manager.openInquiry("0002", 82, lugares[ciudadAleatoria], 60);
 		Sanction multa = manager.identifyDriver(idExpediente, "5000002");
 		System.out.println(multa.getId());
 		System.out.println(multa.getPoints());
@@ -414,8 +416,8 @@ public class TestManager {
 		GeneralDao<SanctionHolder> daoSH = new GeneralDao<>();
 		VehicleDao daoV = new VehicleDao();
 		
-		Sanction s = daoS.findById(Sanction.class, 59);
-		Sanction t = daoS.findById(Sanction.class, 59);
+		Sanction s = daoS.findById(Sanction.class, 611);
+		Sanction t = daoS.findById(Sanction.class, 611);
 		
 		assertTrue(s.equals((Object)t));
 		
@@ -436,7 +438,7 @@ public class TestManager {
 		GeneralDao<SanctionHolder> daoSH = new GeneralDao<>();
 		VehicleDao daoV = new VehicleDao();
 		
-		Sanction s = daoS.findById(Sanction.class, 59);
+		Sanction s = daoS.findById(Sanction.class, 611);
 		assertNotNull(s.hashCode());
 		
 		SanctionHolder sh = daoSH.findById(SanctionHolder.class, 1);
@@ -453,7 +455,7 @@ public class TestManager {
 		GeneralDao<SanctionHolder> daoSH = new GeneralDao<>();
 		VehicleDao daoV = new VehicleDao();
 		
-		Sanction s = daoS.findById(Sanction.class, 59);
+		Sanction s = daoS.findById(Sanction.class, 611);
 		assertTrue(s.equals(s));
 		
 		SanctionHolder sh = daoSH.findById(SanctionHolder.class, 1);
@@ -469,8 +471,8 @@ public class TestManager {
 		GeneralDao<SanctionHolder> daoSH = new GeneralDao<>();
 		VehicleDao daoV = new VehicleDao();
 		
-		Sanction s1 = daoS.findById(Sanction.class, 59);
-		Sanction s2 = daoS.findById(Sanction.class, 66);
+		Sanction s1 = daoS.findById(Sanction.class, 593);
+		Sanction s2 = daoS.findById(Sanction.class, 611);
 		assertFalse(s1.equals(s2));
 		
 		SanctionHolder sh1 = daoSH.findById(SanctionHolder.class, 1);
@@ -488,7 +490,7 @@ public class TestManager {
 		GeneralDao<SanctionHolder> daoSH = new GeneralDao<>();
 		VehicleDao daoV = new VehicleDao();
 		
-		Sanction s1 = daoS.findById(Sanction.class, 59);
+		Sanction s1 = daoS.findById(Sanction.class, 611);
 		Sanction s2 = null;
 		assertFalse(s1.equals(s2));
 		

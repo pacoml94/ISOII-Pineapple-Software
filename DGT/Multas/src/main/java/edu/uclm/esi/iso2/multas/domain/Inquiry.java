@@ -57,8 +57,9 @@ public class Inquiry {
 	}
 
 	public Sanction createSanctionFor(String dni) {
-		int points=calcularAmountAndPoints(maxSpeed, speed);
-		int amount=calculateAmount();
+		Intervalo intervalo = calcularAmountAndPoints(maxSpeed, speed);
+		int points= intervalo.getPoints();
+		double amount=intervalo.getAmmount();
 		Sanction sanction=new Sanction();
 		/**************************************/
 		//Estamos creando una sanción pero no con el objeto sanction de la clase por
@@ -123,7 +124,7 @@ public class Inquiry {
 		this.maxSpeed = maxSpeed;
 	}
 
-	private int calculatePoints() {
+	/* private int calculatePoints() {
 		if (maxSpeed==30) {
 			if (speed>=31 && speed<=50) 
 				return 0;
@@ -142,9 +143,9 @@ public class Inquiry {
 				return 4;
 			else if (speed>=81)
 				return 6;
-		/**
-		 * Se ha añadido la comprobación de la velocidad 50
-		 */
+		
+		 //Se ha añadido la comprobación de la velocidad 50
+		 
 		} else if (maxSpeed==50) {
 			if (speed>=51 && speed<=70) 
 				return 0;
@@ -154,7 +155,7 @@ public class Inquiry {
 				return 4;
 			else if (speed>=91)
 				return 6;
-		/************************************************************/
+		
 		} else if (maxSpeed==60) {
 			if (speed>=61 && speed<=90) 
 				return 0;
@@ -233,7 +234,7 @@ public class Inquiry {
 			else if (speed>=71 && speed<=80)
 				return 500;
 			else
-				return 6;
+				return 600;
 		} else if (maxSpeed==40) {
 			if (speed>=41 && speed<=60) 
 				return 100;
@@ -245,6 +246,17 @@ public class Inquiry {
 				return 500;
 			else
 				return 600;
+		} else if (maxSpeed==50) {
+			if (speed>=51 && speed<=70) 
+				return 100;
+			else if (speed>=71 && speed<=80)
+				return 300;
+			else if (speed>=81 && speed<=90)
+				return 400;
+			else if (speed>=91 && speed<=100)
+				return 500;
+			else
+					return 600;
 		} else if (maxSpeed==60) {
 			if (speed>=61 && speed<=90) 
 				return 100;
@@ -323,20 +335,20 @@ public class Inquiry {
 			else return 600;
 		}
 		return 0;
-	}
+	}*/
 	
-	private int calcularAmountAndPoints (double maxSpeed2, double speed2) {
+	private Intervalo calcularAmountAndPoints (double maxSpeed2, double speed2) {
 		List<Intervalo> intervalos = new ArrayList<>();
 		intervalos = construirIntervalo(speed2, maxSpeed2);
 		
 		for (int i = 0; i < intervalos.size(); i++) {
 
 			if (intervalos.get(i).getSpeed()<=speed2 /*&& intervalos.get(1).getSpeed()>=speed2*/) {
-				int devuelto = intervalos.get(i).getPoints();
+				Intervalo devuelto = intervalos.get(i);
 				return devuelto;
 			}
 		}
-		return 0;
+		return new Intervalo();
 	}
 	
 	private List <Intervalo> construirIntervalo(double speed2, double maxSpeed2) {
@@ -362,11 +374,11 @@ public class Inquiry {
 				intervalos.add(new Intervalo(speed2, maxSpeed2, 0, 100));
 			} else if (speed2 >= 61 && speed2 <= 70) {
 				intervalos.add(new Intervalo(speed2, maxSpeed2, 2, 300));
-			} else if (speed2 >= 81 && speed2 <= 90) {
+			} else if (speed2 >= 71 && speed2 <= 80) {
 				intervalos.add(new Intervalo(speed2, maxSpeed2, 4, 400));
-			} else if (speed2 >= 91 && speed2 <= 100) {
+			} else if (speed2 >= 81 && speed2 <= 90) {
 				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 500));
-			} else if (speed2 > 100) {
+			}  else if (speed2 > 90) {
 				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 600));				
 			}
 			break;
@@ -379,7 +391,7 @@ public class Inquiry {
 				intervalos.add(new Intervalo(speed2, maxSpeed2, 4, 400));
 			} else if (speed2 >= 91 && speed2 <= 100) {
 				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 500));
-			} else if (speed2 > 101) {
+			} else if (speed2 > 100) {
 				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 600));				
 			}
 			break;
@@ -392,7 +404,7 @@ public class Inquiry {
 				intervalos.add(new Intervalo(speed2, maxSpeed2, 4, 400));
 			} else if (speed2 >= 121 && speed2 <= 130) {
 				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 500));
-			} else if (speed2 > 131) {
+			} else if (speed2 > 130) {
 				intervalos.add(new Intervalo(speed2, maxSpeed2, 6, 600));				
 			}
 			break;

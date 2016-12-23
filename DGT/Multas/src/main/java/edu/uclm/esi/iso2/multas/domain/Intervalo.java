@@ -6,6 +6,8 @@ class Intervalo {
 	private int points;
 	private double ammount;
 	
+	public Intervalo(){}
+	
 	public Intervalo(double speed2, double maxSpeed2, int points, double ammount) {
 		super();
 		this.speed = speed2;
