@@ -60,6 +60,11 @@ public class Inquiry {
 		int points=calcularAmountAndPoints(maxSpeed, speed);
 		int amount=calculateAmount();
 		Sanction sanction=new Sanction();
+		/**************************************/
+		//Estamos creando una sanción pero no con el objeto sanction de la clase por
+		//lo que la sancuón nunca va a existir
+		this.sanction = sanction;
+		/*************************************/
 		DriverDao dao=new DriverDao();
 		Driver driver=dao.findByDni(dni);
 		sanction.setSanctionHolder(driver);
@@ -67,7 +72,7 @@ public class Inquiry {
 		sanction.setAmount(amount);
 		GeneralDao<Sanction> daoSanction=new GeneralDao<>();
 		daoSanction.insert(sanction);
-		return sanction;
+		return this.sanction;
 	}
 
 	public int getId() {
